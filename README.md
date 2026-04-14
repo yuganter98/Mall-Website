@@ -4,7 +4,7 @@ A world-class, browser-based interactive sales deck for Mall of America,
 built for prospective retail tenants, brand sponsors, and event partners.
 
 ## Live Demo
-[Deploy URL here — update after Vercel deployment]
+[https://mall-website-sigma.vercel.app/](https://mall-website-sigma.vercel.app/)
 
 ## Overview
 This tool replaces the fragmented pitch process (PDFs, videos, spreadsheets)
