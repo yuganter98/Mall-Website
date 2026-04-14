@@ -1,0 +1,281 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0A0E1A;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E2C97E;
+  --color-cream: #F5F0E8;
+  --color-blue: #1B6CA8;
+  --color-blue-light: #2A85CA;
+  --color-navy-light: #141828;
+  --color-navy-mid: #1A2035;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  --ease-luxury: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #0A0E1A;
+  color: #F5F0E8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0E1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A84C;
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: #C9A84C;
+  color: #0A0E1A;
+}
+
+/* Subtle zoom for hero overlay (NOT applied to video element) */
+@keyframes subtleZoom {
+  0%   { transform: scale(1.0); }
+  100% { transform: scale(1.05); }
+}
+
+/* Hero cinematic orb animations */
+@keyframes orbPulse1 {
+  0%, 100% { transform: scale(1) translate(0%, 0%); opacity: 0.045; }
+  50%       { transform: scale(1.18) translate(3%, 2%); opacity: 0.08; }
+}
+@keyframes orbPulse2 {
+  0%, 100% { transform: scale(1) translate(0%, 0%); opacity: 0.03; }
+  50%       { transform: scale(1.22) translate(-5%, -4%); opacity: 0.065; }
+}
+@keyframes orbPulse3 {
+  0%, 100% { transform: scale(1) translate(0%, 0%); opacity: 0.038; }
+  50%       { transform: scale(1.12) translate(4%, -3%); opacity: 0.06; }
+}
+
+.hero-orb-1 { animation: orbPulse1 9s ease-in-out infinite; }
+.hero-orb-2 { animation: orbPulse2 12s ease-in-out infinite 1.5s; }
+.hero-orb-3 { animation: orbPulse3 8s ease-in-out infinite 3s; }
+
+/* Count-up animation utility */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Luxury divider */
+.divider-gold {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+}
+
+/* Video container aspect ratio */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 110%;
+  height: 120%;
+  border: none;
+  pointer-events: none;
+}
+
+/* Scroll indicator bounce */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Smoother scroll chevron */
+@keyframes scrollChevron {
+  0%   { opacity: 0; transform: translateY(-4px); }
+  30%  { opacity: 1; transform: translateY(0); }
+  70%  { opacity: 1; transform: translateY(6px); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+.scroll-chevron {
+  animation: scrollChevron 1.5s ease-in-out infinite;
+}
+
+/* CTA ghost underline hover */
+.cta-underline-hover:hover .cta-underline {
+  transform: scaleX(1) !important;
+}
+
+/* Card border hover via CSS (avoids Framer Motion shorthand conflicts) */
+.group {
+  transition: border-color 0.3s ease;
+}
+.group:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+}
+
+/* Nav scroll indicator fill */
+.nav-indicator {
+  transition: height 0.3s ease;
+}
+
+/* Hover card reveal */
+.card-hover-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.group:hover .card-hover-content {
+  max-height: 200px;
+}
+
+/* Parallax section */
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  .parallax-bg {
+    background-attachment: scroll;
+  }
+}
+
+/* Mosaic grid */
+.mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 8px;
+}
+
+.mosaic-grid > :nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .mosaic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mosaic-grid > :nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+/* Text gradient */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C9A84C 0%, #E2C97E 50%, #C9A84C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Thin gold border utility */
+.border-gold-thin {
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+/* Timeline dot */
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #C9A84C;
+}
+
+/* Image performance */
+img {
+  content-visibility: auto;
+}
+
+/* ─── Mobile Responsive ─── */
+
+@media (max-width: 768px) {
+  /* Retail: single column */
+  .retail-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .retail-left {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  /* Entertainment: single column cards */
+  .entertainment-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Sponsorship: stats + tiers stack */
+  .sponsorship-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+  .sponsorship-tiers-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero CTAs stack */
+  .hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* General section padding */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Tablet: 2 columns for entertainment */
+  .entertainment-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Sponsorship stats: 3 cols on tablet */
+  .sponsorship-stats-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* Retail: stack on tablet too */
+  .retail-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
